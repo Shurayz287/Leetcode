@@ -1,28 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Problem 1
-class Solution1 
-{
-    public:
-        vector<int> twoSum(vector<int>& nums, int target) 
-        {
-            int sizeNums = nums.size();
-            map<int,int> numsMap;
-            numsMap[nums[0]] = 0;
-            for(int i=1; i<sizeNums; i++)
-            {   
-                int val = target - nums[i];
-                if( numsMap.count(val) )
-                {
-                    return{numsMap[val],i};
-                }
-                numsMap[nums[i]] = i;
+/*
+vector<int> twoSum(vector<int>& nums, int target) {
+    int sizeNums = nums.size();
+    for(int i=0 ; i<sizeNums -1; i++){
+        int numsJ = target - nums[i];
+        for(int j = i+1; j<sizeNums;j++){
+            if( nums[j] == numsJ){
+                return {i,j};
             }
-
-            return {};
         }
-};
+    }
+    return{};
+*/
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int,int> numsMap;
+
+    for(int i=0; i<nums.size(); i++){   
+        if( numsMap.count(target - nums[i]) ){
+            return{numsMap[target - nums[i]],i};
+        }
+        numsMap[nums[i]] = i;
+    }
+
+    return {};
+}
 
 void inputVector(vector<int>& vec)
 {
@@ -38,14 +42,13 @@ void printVector(vector<int>& vec)
 
 int main()
 {
-    Solution1 solve;
     int num; cin>>num;
     vector<int> nums(num);
 
     inputVector(nums);
     int target; cin>> target;
 
-    vector<int> reVec = solve.twoSum(nums, target);
+    vector<int> reVec = twoSum(nums, target);
     printVector(reVec);
 
 }
