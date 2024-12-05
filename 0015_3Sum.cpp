@@ -25,7 +25,7 @@ public:
 
                 int third = -(nums[i]+nums[j]);
 
-                if (mapCheck[third] > 0 && third > nums[j]) re.push_back({nums[i],nums[j],third})
+                if (mapCheck[third] > 0 && third > nums[j]) re.push_back({nums[i],nums[j],third});
 
                 mapCheck[nums[j]]++;
             }
